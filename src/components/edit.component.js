@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -13,6 +14,20 @@ export default class Edit extends Component {
             authorName: '',
             quantity:''
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/books/edit/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    bookName: response.data.bookName,
+                    authorName: response.data.authorName,
+                    quantity: response.data.quantity 
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     onChangeBookName(e) {
@@ -34,15 +49,31 @@ export default class Edit extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault();
-        const obj = {
-            bookName: this.state.bookName,
-            authorName: this.state.authorName,
-            quantity: this.state.quantity
-        };
-    // Dieu huong ve trang index sau khi edit xong
-        this.props.history.push('/index');
-    }
+    e.preventDefault();
+    const obj = {
+        bookName: this.state.bookName,
+        authorName: this.state.authorName,
+        quantity: this.state.quantity
+    };
+
+    axios.post('http://localhost:4000/books/update/'+this.props.match.params.id, obj)
+        .then(res => {
+            console.log(res.data);
+            // Update the state of the component with the new data
+            this.setState({
+                bookName: res.data.bookName,
+                authorName: res.data.authorName,
+                quantity: res.data.quantity 
+            });
+            // Reload the component to update the view
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
 
     render() {
         return (

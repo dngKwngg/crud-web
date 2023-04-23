@@ -1,5 +1,3 @@
-// index.component.js
-
 import React, {Component} from 'react';
 import axios from 'axios';
 import TableRow from './TableRow';
@@ -34,8 +32,8 @@ export default class Index extends Component {
                 <table className="table table-striped" style={{marginTop: 20}}>
                     <thead>
                     <tr>
-                        <th>Book Name</th>
-                        <th>Author Name</th>
+                        <th>Name</th>
+                        <th>Author</th>
                         <th>Quantity</th>
                         <th colSpan="2">Action</th>
                     </tr>

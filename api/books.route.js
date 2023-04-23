@@ -28,16 +28,22 @@ bookRoutes.route('/').get(function (req, res) {
 });
 
 // Defined edit route
-bookRoutes.route('/edit/:id').get(function (req, res) {
-    let id = req.params.id;
-    Book.findById(id, function (err, bookData){
+bookRoutes.route('/edit/:id').get(async function (req, res) {
+    try {
+        let id = req.params.id;
+        let bookData = await Book.findById(id);
         res.json(bookData);
-    });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal server error');
+    }
 });
 
+
 //  Defined update route
-bookRoutes.route('/update/:id').post(function (req, res) {
-    Book.findById(req.params.id, function(err, book) {
+bookRoutes.route('/update/:id').post(async function (req, res) {
+    try {
+        let book = await Book.findById(req.params.id);
         if (!book)
             res.status(404).send("data is not found");
         else {
@@ -46,22 +52,29 @@ bookRoutes.route('/update/:id').post(function (req, res) {
             book.authorName = req.body.authorName;
             book.quantity = req.body.quantity;
 
-            book.save().then(bookData => {
-                res.json('Update complete');
-            })
-                .catch(err => {
-                    res.status(400).send("unable to update the database");
-                });
+            let bookData = await book.save();
+            res.json('Update complete');
         }
-    });
+    } catch (err) {
+        console.error(err);
+        res.status(400).send("unable to update the database");
+    }
 });
 
+
 // Defined delete | remove | destroy route
-bookRoutes.route('/delete/:id').get(function (req, res) {
-    Book.findByIdAndRemove({_id: req.params.id}, function(err, book){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
+bookRoutes.route('/delete/:id').get(async function (req, res) {
+    try {
+        const book = await Book.findByIdAndRemove(req.params.id);
+        if (!book) {
+            return res.status(404).send("Data is not found");
+        }
+        return res.json("Successfully removed");
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send("Internal server error");
+    }
 });
+
 
 module.exports = bookRoutes;
