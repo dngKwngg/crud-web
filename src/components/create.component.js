@@ -1,8 +1,5 @@
-// create.component.js
-// Tao form dien thong tin add item vao server
-
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 export default class Create extends Component {
     constructor(props) {
@@ -15,25 +12,25 @@ export default class Create extends Component {
         this.state = {
             bookName: '',
             authorName: '',
-            quantity:''
+            quantity: '',
+            };
         }
-    }
 
     onChangeBookName(e) {
         this.setState({
-            bookName: e.target.value
+            bookName: e.target.value,
         });
     }
 
     onChangeAuthorName(e) {
         this.setState({
-            authorName: e.target.value
+            authorName: e.target.value,
         });
     }
 
     onChangeQuantity(e) {
         this.setState({
-            quantity: e.target.value
+            quantity: e.target.value,
         });
     }
 
@@ -43,59 +40,71 @@ export default class Create extends Component {
         const obj = {
             bookName: this.state.bookName,
             authorName: this.state.authorName,
-            quantity: this.state.quantity
+            quantity: this.state.quantity,
         };
-        axios.post('http://localhost:4000/books/add', obj)
-            .then(res => console.log(res.data));
+        axios.post('http://localhost:4000/books/add', obj).then((res) => {
+            console.log(res.data);
+            createPopupAndRefresh();
+        });
 
         this.setState({
             bookName: '',
             authorName: '',
-            quantity: ''
-        })
+            quantity: '',
+        });
     }
 
     render() {
         return (
-            <div style={{marginTop: 10}}>
+            <div style={{ marginTop: 10 }}>
                 <h3>Add New Product</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Book Name:  </label>
-                        <input 
+                        <label>Book Name: </label>
+                        <input
                             type="text"
-                            className="form-control" 
-                            required="required" 
-                            value={this.state.bookName} 
+                            className="form-control"
+                            required="required"
+                            value={this.state.bookName}
                             onChange={this.onChangeBookName}
                         />
                     </div>
                     <div className="form-group">
                         <label>Author Name: </label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            required="required" 
-                            value={this.state.authorName} 
+                        <input
+                            type="text"
+                            className="form-control"
+                            required="required"
+                            value={this.state.authorName}
                             onChange={this.onChangeAuthorName}
                         />
                     </div>
                     <div className="form-group">
                         <label>Quantity: </label>
-                        <input 
-                            type="number" 
-                            min={0} 
-                            className="form-control" 
-                            required="required" 
-                            value={this.state.quantity} 
+                        <input
+                            type="number"
+                            min={0}
+                            className="form-control"
+                            required="required"
+                            value={this.state.quantity}
                             onChange={this.onChangeQuantity}
                         />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Click to add product" className="btn btn-primary"/>
+                        <input
+                            type="submit"
+                            value="Click to add product"
+                            className="btn btn-primary"
+                        />
                     </div>
                 </form>
             </div>
-        )
+        );
+    }
+}
+
+function createPopupAndRefresh() {
+    if (window.confirm('Product added successfully! Do you want to reload the page?')) {
+        window.location.reload();
     }
 }
