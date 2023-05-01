@@ -131,7 +131,7 @@ export default class Edit extends Component {
 
             return (
         <div style={{ marginTop: 10 }}>
-            <h3>Add New Product</h3>
+            <h3>Update Product</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Name: </label>
