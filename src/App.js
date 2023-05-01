@@ -18,10 +18,11 @@ class App extends Component {
         {/* <>Thanh menu cua web crud</> */}
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/'} className="navbar-brand">React Rumi CRUD</Link>
+            <Link to={'/'} className="navbar-brand" style={{ fontWeight: 'bold' }}>Rumi CRUD</Link>
+
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
+                <li className="nav-item">
                   <Link to={'/'} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
@@ -32,14 +33,14 @@ class App extends Component {
                 </li>
               </ul>
             </div>
-          </nav> <br/>
-          <h2>Sample React CRUD</h2> <br/>
+          </nav> <br />
+          <h2>RUMI_BOOK</h2> <br />
 
           {/* <> Xu ly redirect giua cac trang</> */}
           <Switch>
-              <Route exact path='/create' component={ Create } />
-              <Route path='/edit/:id' component={ Edit } />
-              <Route path='/index' component={ Index } />
+            <Route exact path='/create' component={Create} />
+            <Route path='/edit/:id' component={Edit} />
+            <Route path='/index' component={Index} />
           </Switch>
         </div>
       </Router>

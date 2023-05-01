@@ -27,43 +27,43 @@ class Create extends Component {
 
     onChangeName(e) {
         this.setState({
-        name: e.target.value,
+            name: e.target.value,
         });
     }
 
     onChangeImage(e) {
         this.setState({
-        image: e.target.value,
+            image: e.target.value,
         });
     }
 
     onChangeDescription(e) {
         this.setState({
-        description: e.target.value,
+            description: e.target.value,
         });
     }
 
     onChangeRatings(e) {
         this.setState({
-        ratings: e.target.value,
+            ratings: e.target.value,
         });
     }
 
     onChangeNumOfReviews(e) {
         this.setState({
-        numOfReviews: e.target.value,
+            numOfReviews: e.target.value,
         });
     }
 
     onChangePrice(e) {
         this.setState({
-        price: e.target.value,
+            price: e.target.value,
         });
     }
 
     onChangeCountInStock(e) {
         this.setState({
-        countInStock: e.target.value,
+            countInStock: e.target.value,
         });
     }
 
@@ -81,11 +81,11 @@ class Create extends Component {
         };
 
         axios.post("http://localhost:5000/products/add", obj)
-        .then((res) => {
-            console.log(res.data);
-            alert("Product added successfully!");
-            this.props.history.push("/");
-        }).catch((err) => console.log(err));
+            .then((res) => {
+                console.log(res.data);
+                alert("Product added successfully!");
+                this.props.history.push("/");
+            }).catch((err) => console.log(err));
 
 
         this.setState({
@@ -102,30 +102,33 @@ class Create extends Component {
 
     render() {
         return (
-        <div style={{ marginTop: 10 }}>
-            <h3>Add New Product</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Name: </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        required="required"
-                        value={this.state.name}
-                        onChange={this.onChangeName}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Image: </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        required="required"
-                        value={this.state.image}
-                        onChange={this.onChangeImage}
-                    />
-                </div>
-                <div className="form-group">
+            <div style={{ marginTop: 10 }}>
+                <h3 style={{ textAlign: 'center' }}>Add New Product</h3>
+                <form onSubmit={this.onSubmit} style={{ marginLeft: '500px' }}>
+                    <div className="form-group" >
+                        <label >Name: </label>
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            required="required"
+                            value={this.state.name}
+                            onChange={this.onChangeName}
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Image: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            required="required"
+                            value={this.state.image}
+                            onChange={this.onChangeImage}
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
                         <label>Description: </label>
                         <input
                             type="text"
@@ -133,53 +136,57 @@ class Create extends Component {
                             required="required"
                             value={this.state.description}
                             onChange={this.onChangeDescription}
+                            style={{ width: '300px' }}
                         />
-                </div>
-                <div className="form-group">
-                    <label>Ratings: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        required="required"
-                        min={0}
-                        step={0.1}
-                        value={this.state.ratings}
-                        onChange={this.onChangeRatings}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Price: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        required="required"
-                        min={0}
-                        step={1}
-                        value={this.state.price}
-                        onChange={this.onChangePrice}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>CountInStock: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        required="required"
-                        min={0}
-                        step={1}
-                        value={this.state.countInStock}
-                        onChange={this.onChangeCountInStock}
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="submit"
-                        value="Add Product"
-                        className="btn btn-primary"
-                    />
-                </div>
-            </form>
-        </div>
+                    </div>
+                    <div className="form-group">
+                        <label>Ratings: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            required="required"
+                            min={0}
+                            step={0.1}
+                            value={this.state.ratings}
+                            onChange={this.onChangeRatings}
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Price: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            required="required"
+                            min={0}
+                            step={1}
+                            value={this.state.price}
+                            onChange={this.onChangePrice}
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>CountInStock: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            required="required"
+                            min={0}
+                            step={1}
+                            value={this.state.countInStock}
+                            onChange={this.onChangeCountInStock}
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="submit"
+                            value="Add Product"
+                            className="btn btn-primary"
+                        />
+                    </div>
+                </form>
+            </div>
         );
     }
 }
