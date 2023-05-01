@@ -28,6 +28,14 @@ let ProductSchema = new Schema({
     countInStock: {
         type: Number,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
 }, {
     collection: 'products'
