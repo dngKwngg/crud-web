@@ -1,21 +1,43 @@
-// books.model.js
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define collection and schema for Business
-let Books = new Schema({
-    bookName: {
+// Define collection and schema for products
+let ProductSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    image: {
         type: String
     },
-    authorName: {
+    description: {
         type: String
     },
-    quantity: {
-        type: Number
+    ratings: {
+        type: Number,
+        default: 0
+    },
+    numOfReviews: {
+        type: Number,
+        default: 0
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    countInStock: {
+        type: Number,
+        required: true
     }
 }, {
-    collection: 'books'
+    collection: 'products'
 });
 
-module.exports = mongoose.model('Books', Books);
+// Create a connection to the database
+mongoose.connect('mongodb+srv://adminrumi:102030456789a@clusterrumi.9mnsjax.mongodb.net/BookDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Database connected'))
+    .catch(error => console.log('Database connection error:', error));
+
+
+// Export the Product model
+module.exports = mongoose.model('Product', ProductSchema);

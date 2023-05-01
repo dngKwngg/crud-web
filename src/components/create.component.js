@@ -1,36 +1,69 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class Create extends Component {
+class Create extends Component {
     constructor(props) {
         super(props);
-        this.onChangeBookName = this.onChangeBookName.bind(this);
-        this.onChangeAuthorName = this.onChangeAuthorName.bind(this);
-        this.onChangeQuantity = this.onChangeQuantity.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeRatings = this.onChangeRatings.bind(this);
+        this.onChangeNumOfReviews = this.onChangeNumOfReviews.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeCountInStock = this.onChangeCountInStock.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            bookName: '',
-            authorName: '',
-            quantity: '',
-            };
-        }
+            name: '',
+            image: '',
+            description: '',
+            ratings: 0,
+            numOfReviews: 0,
+            price: 0,
+            countInStock: 0,
+        };
+    }
 
-    onChangeBookName(e) {
+    onChangeName(e) {
         this.setState({
-            bookName: e.target.value,
+        name: e.target.value,
         });
     }
 
-    onChangeAuthorName(e) {
+    onChangeImage(e) {
         this.setState({
-            authorName: e.target.value,
+        image: e.target.value,
         });
     }
 
-    onChangeQuantity(e) {
+    onChangeDescription(e) {
         this.setState({
-            quantity: e.target.value,
+        description: e.target.value,
+        });
+    }
+
+    onChangeRatings(e) {
+        this.setState({
+        ratings: e.target.value,
+        });
+    }
+
+    onChangeNumOfReviews(e) {
+        this.setState({
+        numOfReviews: e.target.value,
+        });
+    }
+
+    onChangePrice(e) {
+        this.setState({
+        price: e.target.value,
+        });
+    }
+
+    onChangeCountInStock(e) {
+        this.setState({
+        countInStock: e.target.value,
         });
     }
 
@@ -38,73 +71,123 @@ export default class Create extends Component {
         e.preventDefault();
 
         const obj = {
-            bookName: this.state.bookName,
-            authorName: this.state.authorName,
-            quantity: this.state.quantity,
+            name: this.state.name,
+            image: this.state.image,
+            description: this.state.description,
+            ratings: this.state.ratings,
+            numOfReviews: this.state.numOfReviews,
+            price: this.state.price,
+            countInStock: this.state.countInStock,
         };
-        axios.post('http://localhost:4000/books/add', obj).then((res) => {
+
+        axios.post("http://localhost:5000/products/add", obj)
+        .then((res) => {
             console.log(res.data);
-            createPopupAndRefresh();
-        });
+            alert("Product added successfully!");
+            this.props.history.push("/");
+        }).catch((err) => console.log(err));
+
 
         this.setState({
-            bookName: '',
-            authorName: '',
-            quantity: '',
+            name: "",
+            image: "",
+            description: "",
+            ratings: 0,
+            numOfReviews: 0,
+            price: 0,
+            countInStock: 0,
         });
     }
 
+
     render() {
         return (
-            <div style={{ marginTop: 10 }}>
-                <h3>Add New Product</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Book Name: </label>
+        <div style={{ marginTop: 10 }}>
+            <h3>Add New Product</h3>
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                    <label>Name: </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        required="required"
+                        value={this.state.name}
+                        onChange={this.onChangeName}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Image: </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        required="required"
+                        value={this.state.image}
+                        onChange={this.onChangeImage}
+                    />
+                </div>
+                <div className="form-group">
+                        <label>Description: </label>
                         <input
                             type="text"
                             className="form-control"
                             required="required"
-                            value={this.state.bookName}
-                            onChange={this.onChangeBookName}
+                            value={this.state.description}
+                            onChange={this.onChangeDescription}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Author Name: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            required="required"
-                            value={this.state.authorName}
-                            onChange={this.onChangeAuthorName}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Quantity: </label>
-                        <input
-                            type="number"
-                            min={0}
-                            className="form-control"
-                            required="required"
-                            value={this.state.quantity}
-                            onChange={this.onChangeQuantity}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type="submit"
-                            value="Click to add product"
-                            className="btn btn-primary"
-                        />
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div className="form-group">
+                    <label>Ratings: </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        required="required"
+                        min={0}
+                        step={0.1}
+                        value={this.state.ratings}
+                        onChange={this.onChangeRatings}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Price: </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        required="required"
+                        min={0}
+                        step={1}
+                        value={this.state.price}
+                        onChange={this.onChangePrice}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>CountInStock: </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        required="required"
+                        min={0}
+                        step={1}
+                        value={this.state.countInStock}
+                        onChange={this.onChangeCountInStock}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="submit"
+                        value="Add Product"
+                        className="btn btn-primary"
+                    />
+                </div>
+            </form>
+        </div>
         );
     }
 }
 
-function createPopupAndRefresh() {
-    if (window.confirm('Product added successfully! Do you want to reload the page?')) {
-        window.location.reload();
+function createPopupAndRedirect(history) {
+    if (window.confirm('Product added successfully! Do you want to go to the index page?')) {
+        history.push('/index');
     }
 }
+
+export default withRouter(Create);

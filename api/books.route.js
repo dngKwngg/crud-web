@@ -1,80 +1,88 @@
-// books.route.js
-
 const express = require('express');
-const bookRoutes = express.Router();
+const productRoutes = express.Router();
 
-// Require Business model in our routes module
-let Book = require('./books.model.js');
 
-// Defined store route
-bookRoutes.route('/add').post(function (req, res) {
-    let book = new Book(req.body);
-    book.save()
-        .then(book => {
-            res.status(200).json({'book': 'book in added successfully'});
+// Require Product model in our routes module
+const Product = require('./books.model.js');
+
+// Defined add route
+productRoutes.route('/add').post(function (req, res) {
+    const product = new Product({
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description,
+        ratings: req.body.ratings,
+        numOfReviews: req.body.numOfReviews,
+        price: req.body.price,
+        countInStock: req.body.countInStock
+    });
+    product.save()
+        .then(product => {
+            res.status(200).json({'product': 'Product added successfully'});
         })
         .catch(err => {
-            res.status(400).send("unable to save to database");
+            res.status(400).send("Unable to save to database");
         });
 });
 
 // Defined get data(index or listing) route
-bookRoutes.route('/').get(function (req, res) {
-    Book.find().then((books) => {
-        res.json(books);
+productRoutes.route('/').get(function (req, res) {
+    Product.find().then((products) => {
+        res.json(products);
     }).catch((err) => {
         console.log(err);
+        res.status(500).send("Internal server error");
     });
 });
 
 // Defined edit route
-bookRoutes.route('/edit/:id').get(async function (req, res) {
+productRoutes.route('/edit/:id').get(async function (req, res) {
     try {
-        let id = req.params.id;
-        let bookData = await Book.findById(id);
-        res.json(bookData);
+        const id = req.params.id;
+        const productData = await Product.findById(id);
+        res.json(productData);
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal server error');
     }
 });
 
-
-//  Defined update route
-bookRoutes.route('/update/:id').post(async function (req, res) {
+// Defined update route
+productRoutes.route('/update/:id').post(async function (req, res) {
     try {
-        let book = await Book.findById(req.params.id);
-        if (!book)
-            res.status(404).send("data is not found");
-        else {
-            console.log(book);
-            book.bookName = req.body.bookName;
-            book.authorName = req.body.authorName;
-            book.quantity = req.body.quantity;
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).send("Data not found");
+        } else {
+            product.name = req.body.name;
+            product.image = req.body.image;
+            product.description = req.body.description;
+            product.ratings = req.body.ratings;
+            product.numOfReviews = req.body.numOfReviews;
+            product.price = req.body.price;
+            product.countInStock = req.body.countInStock;
 
-            let bookData = await book.save();
-            res.json('Update complete');
+            const productData = await product.save();
+            res.json('Product update complete');
         }
     } catch (err) {
         console.error(err);
-        res.status(400).send("unable to update the database");
+        res.status(400).send("Unable to update the database");
     }
 });
-
 
 // Defined delete | remove | destroy route
-bookRoutes.route('/delete/:id').get(async function (req, res) {
-    try {
-        const book = await Book.findByIdAndRemove(req.params.id);
-        if (!book) {
-            return res.status(404).send("Data is not found");
-        }
-        return res.json("Successfully removed");
-    } catch (err) {
-        console.error(err);
-        return res.status(500).send("Internal server error");
+productRoutes.route('/delete/:id').delete(async function (req, res) {
+  try {
+    const product = await Product.findByIdAndRemove(req.params.id);
+    if (!product) {
+      return res.status(404).send("Data not found");
     }
+    return res.json("Product successfully removed");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Internal server error");
+  }
 });
 
-
-module.exports = bookRoutes;
+module.exports = productRoutes;
