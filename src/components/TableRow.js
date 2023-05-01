@@ -39,8 +39,12 @@ class TableRow extends Component {
     return (
       <tr>
         <td>{this.props.obj.name}</td>
-        <td>{this.props.obj.image}</td>
-        <td>{this.props.obj.description}</td>
+        <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {this.props.obj.image}
+        </td>
+        <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {this.props.obj.description}
+        </td>
         <td>{this.props.obj.ratings}</td>
         <td>{this.props.obj.numOfReviews}</td>
         <td>{this.props.obj.price}</td>
