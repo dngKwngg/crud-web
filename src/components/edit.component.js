@@ -27,7 +27,7 @@ export default class Edit extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/products/edit/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/products/edit/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     name: response.data.name,
@@ -99,7 +99,7 @@ export default class Edit extends Component {
             countInStock: this.state.countInStock
         };
 
-        axios.post('http://localhost:5000/products/update/'+this.props.match.params.id, obj)
+        axios.post('http://localhost:5000/products/update/' + this.props.match.params.id, obj)
             .then(res => {
                 console.log(res.data);
                 // Update the state of the component with the new data
@@ -129,96 +129,103 @@ export default class Edit extends Component {
             return <Redirect to='/' />;
         }
 
-            return (
-        <div style={{ marginTop: 10 }}>
-            <h3>Update Product</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Name: </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={this.state.name}
-                        onChange={this.onChangeName}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Image: </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={this.state.image}
-                        onChange={this.onChangeImage}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Description: </label>
-                    <textarea
-                        className="form-control"
-                        value={this.state.description}
-                        onChange={this.onChangeDescription}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Ratings: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        value={this.state.ratings}
-                        onChange={this.onChangeRatings}
-                        min={0}
-                        step={0.1}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Number of Reviews: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        value={this.state.numOfReviews}
-                        onChange={this.onChangeNumOfReviews}
-                        min={0}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Price: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        value={this.state.price}
-                        onChange={this.onChangePrice}
-                        min={0}
-                        step={0.01}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Count in Stock: </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        value={this.state.countInStock}
-                        onChange={this.onChangeCountInStock}
-                        min={0}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="submit"
-                        value="Update Product"
-                        className="btn btn-primary"
-                    />
-                </div>
-            </form>
-        </div>
-    );
-}
+        return (
+            <div style={{ marginTop: 10 }}>
+                <h3 style={{ margin: '0 auto', width: '25%' }}>Update Product</h3>
+                <form onSubmit={this.onSubmit} style={{ margin: '0 auto', width: '25%' }}>
+                    <div className="form-group">
+                        <label>Name: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.name}
+                            onChange={this.onChangeName}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Image: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.image}
+                            onChange={this.onChangeImage}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Description: </label>
+                        <textarea
+                            className="form-control"
+                            value={this.state.description}
+                            onChange={this.onChangeDescription}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Ratings: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={this.state.ratings}
+                            onChange={this.onChangeRatings}
+                            min={0}
+                            step={0.1}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Number of Reviews: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={this.state.numOfReviews}
+                            onChange={this.onChangeNumOfReviews}
+                            min={0}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Price: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={this.state.price}
+                            onChange={this.onChangePrice}
+                            min={0}
+                            step={0.01}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Count in Stock: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={this.state.countInStock}
+                            onChange={this.onChangeCountInStock}
+                            min={0}
+                            required
+                            style={{ width: '300px' }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="submit"
+                            value="Update Product"
+                            className="btn btn-primary"
+                        />
+                    </div>
+                </form>
+            </div>
+        );
+    }
 }
 
 

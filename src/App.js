@@ -17,7 +17,10 @@ class App extends Component {
 
         {/* <>Thanh menu cua web crud</> */}
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          {/* <nav className="navbar navbar-expand-lg navbar-light bg-light"> */}
+          {/* <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#f0f0f0" }}> */}
+          <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundImage: "linear-gradient(to right, #D8BFD8, #f0f0f0)" }}>
+
             <Link to={'/'} className="navbar-brand" style={{ fontWeight: 'bold' }}>Rumi CRUD</Link>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
