@@ -25,15 +25,15 @@ class App extends Component {
             <Link to={'/'} className="navbar-brand" style={{ fontWeight: 'bold', position: 'relative', left: '5%' }}>Rumi CRUD</Link>
             <div className="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link to={'/'} className="nav-link" style={{position: 'relative', right: '10%' }}>Home</Link>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                   <Link to={'/create'} className="nav-link" style={{position: 'relative', right: '10%' }}>Create</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to={'/index'} className="nav-link" style={{position: 'relative', right: '10%' }}>Index</Link>
-                </li>
+                </li> */}
+                {/* <li className="nav-item">
+                  <Link to={'/'} className="nav-link" style={{position: 'relative', right: '10%' }}>Product List</Link>
+                </li> */}
               </ul>
             </div>
           </nav>
@@ -46,7 +46,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/create' component={Create} />
             <Route path='/edit/:id' component={Edit} />
-            <Route path='/index' component={Index} />
+            <Route path='/' component={Index} />
           </Switch>
         </div>
       </Router>

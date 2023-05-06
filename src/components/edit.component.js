@@ -114,7 +114,7 @@ export default class Edit extends Component {
                     countInStock: res.data.countInStock
                 });
                 // Display a confirmation popup and redirect to / if the user clicks "OK"
-                if (window.confirm("Product updated. Go back to index page?")) {
+                if (window.confirm("Product updated. Go back to product list?")) {
                     this.setState({
                         redirect: true
                     });
@@ -127,7 +127,7 @@ export default class Edit extends Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to='/index' />;
+            return <Redirect to='/' />;
         }
 
         return (
