@@ -146,7 +146,7 @@ export default class Edit extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Image: </label>
+                        <label>Image (URL): </label>
                         <input
                             type="text"
                             className="form-control"
