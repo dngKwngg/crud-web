@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import './create.css';
 
 class Create extends Component {
     constructor(props) {
@@ -102,90 +103,84 @@ class Create extends Component {
 
     render() {
         return (
-            <div style={{ marginTop: 10 }}>
-                <h3 style={{ margin: '0 auto', width: '25%' }}>Add New Product</h3>
-                <form onSubmit={this.onSubmit} style={{ margin: '0 auto', width: '25%' }}>
-                    <div className="form-group" >
-                        <label >Name: </label>
-                        <input
-
-                            type="text"
-                            className="form-control"
-                            required="required"
-                            value={this.state.name}
-                            onChange={this.onChangeName}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Image: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            required="required"
-                            value={this.state.image}
-                            onChange={this.onChangeImage}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Description: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            required="required"
-                            value={this.state.description}
-                            onChange={this.onChangeDescription}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Ratings: </label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            required="required"
-                            min={0}
-                            step={0.1}
-                            value={this.state.ratings}
-                            onChange={this.onChangeRatings}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Price: </label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            required="required"
-                            min={0}
-                            step={1}
-                            value={this.state.price}
-                            onChange={this.onChangePrice}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>CountInStock: </label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            required="required"
-                            min={0}
-                            step={1}
-                            value={this.state.countInStock}
-                            onChange={this.onChangeCountInStock}
-                            style={{ width: '300px' }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type="submit"
-                            value="Add Product"
-                            className="btn btn-primary"
-                        />
-                    </div>
-                </form>
+            <div className="create-form">
+            <h3>Add New Product</h3>
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                <label htmlFor="name">Name:</label>
+                <input
+                    type="text"
+                    id="name"
+                    className="form-control"
+                    required
+                    value={this.state.name}
+                    onChange={this.onChangeName}
+                />
+                </div>
+                <div className="form-group">
+                <label htmlFor="image">Image (URL):</label>
+                <input
+                    type="text"
+                    id="image"
+                    className="form-control"
+                    required
+                    value={this.state.image}
+                    onChange={this.onChangeImage}
+                />
+                </div>
+                <div className="form-group">
+                <label htmlFor="description">Description:</label>
+                <input
+                    type="text"
+                    id="description"
+                    className="form-control"
+                    required
+                    value={this.state.description}
+                    onChange={this.onChangeDescription}
+                />
+                </div>
+                <div className="form-group">
+                <label htmlFor="ratings">Ratings:</label>
+                <input
+                    type="number"
+                    id="ratings"
+                    className="form-control"
+                    required
+                    min={0}
+                    max={5}
+                    step={0.1}
+                    value={this.state.ratings}
+                    onChange={this.onChangeRatings}
+                />
+                </div>
+                <div className="form-group">
+                <label htmlFor="price">Price:</label>
+                <input
+                    type="number"
+                    id="price"
+                    className="form-control"
+                    required
+                    min={0}
+                    step={1}
+                    value={this.state.price}
+                    onChange={this.onChangePrice}
+                />
+                </div>
+                <div className="form-group">
+                <label htmlFor="countInStock">Count in Stock:</label>
+                <input
+                    type="number"
+                    id="countInStock"
+                    className="form-control"
+                    required
+                    min={0}
+                    step={1}
+                    value={this.state.countInStock}
+                    onChange={this.onChangeCountInStock}
+                />
+                </div>
+                <button type="submit" className="btn btn-primary">Add Product</button>
+            </form>
             </div>
         );
     }

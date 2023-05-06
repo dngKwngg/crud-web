@@ -39,7 +39,7 @@ export default class Index extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ padding: "40px", marginTop: "20px" }}>
         <h3 align="center">Products List</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
@@ -58,5 +58,6 @@ export default class Index extends Component {
         </table>
       </div>
     );
+
   }
 }

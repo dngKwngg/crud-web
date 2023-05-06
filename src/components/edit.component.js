@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import './edit.css'
 
 export default class Edit extends Component {
     constructor(props) {
@@ -113,7 +114,7 @@ export default class Edit extends Component {
                     countInStock: res.data.countInStock
                 });
                 // Display a confirmation popup and redirect to / if the user clicks "OK"
-                if (window.confirm("Product updated. Go back to homepage?")) {
+                if (window.confirm("Product updated. Go back to index page?")) {
                     this.setState({
                         redirect: true
                     });
@@ -126,7 +127,7 @@ export default class Edit extends Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to='/' />;
+            return <Redirect to='/index' />;
         }
 
         return (
