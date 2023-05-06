@@ -41,7 +41,7 @@ export default class Index extends Component {
     return (
       <div style={{ padding: "40px", marginTop: "20px" }}>
         <h3 className="products-header" align="center">Products List</h3>
-        <button onClick={() => this.props.history.push("/create")} className="btn btn-primary" style={{ float: "right" }} >Create Product</button>
+        <button onClick={() => this.props.history.push("/create")} className="btn btn-success" style={{ float: "right" ,backgroundColor: 'green' }} >Create Product</button>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
