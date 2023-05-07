@@ -12,19 +12,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
+      isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
     };
   }
 
+
   handleLogin = () => {
-    // Simulating a successful login
+  // Simulating a successful login
     this.setState({ isAuthenticated: true });
+    localStorage.setItem('isAuthenticated', true);
   };
 
+
   handleLogout = () => {
-    // Simulating a logout
+  // Simulating a logout
     this.setState({ isAuthenticated: false });
+    localStorage.removeItem('isAuthenticated');
   };
+
 
   render() {
     const { isAuthenticated } = this.state;
