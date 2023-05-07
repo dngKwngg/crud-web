@@ -42,9 +42,9 @@ let ProductSchema = new Schema({
 });
 
 // Create a connection to the database
-mongoose.connect('mongodb+srv://adminrumi:102030456789a@clusterrumi.9mnsjax.mongodb.net/BookDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Database connected'))
-    .catch(error => console.log('Database connection error:', error));
+// mongoose.connect('mongodb+srv://adminrumi:102030456789a@clusterrumi.9mnsjax.mongodb.net/BookDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log('Database connected'))
+//     .catch(error => console.log('Database connection error:', error));
 
 
 // Export the Product model
